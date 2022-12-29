@@ -1,0 +1,21 @@
+version: '3.9'
+
+volumes:
+  nexus-data:
+
+services:
+  nexus:
+    image: klo2k/nexus3
+    volumes:
+      - nexus-data:/nexus-data
+    ports:
+      - "8081:8081"
+  snyk-broker:
+    image: snyk/broker:nexus
+    ports:
+      - "7341:7341"
+    environment:
+      - BROKER_TOKEN=<your nexus broker token>
+      - BASE_NEXUS_URL=http://<username:password>@nexus:8081
+      - RES_BODY_URL_SUB=http://nexus:8081/repository
+      - BROKER_CLIENT_VALIDATION_URL=http://<username:password>@nexus:8081/service/rest/v1/status/check
