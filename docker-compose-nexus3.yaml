@@ -15,7 +15,9 @@ services:
     ports:
       - "7341:7341"
     environment:
-      - BROKER_TOKEN=<your nexus broker token>
-      - BASE_NEXUS_URL=http://<username:password>@nexus:8081
+      - BROKER_TOKEN=<token>
+      - BASE_NEXUS_URL=http://test:test@nexus:8081
       - RES_BODY_URL_SUB=http://nexus:8081/repository
-      - BROKER_CLIENT_VALIDATION_URL=http://<username:password>@nexus:8081/service/rest/v1/status/check
+      - BROKER_CLIENT_VALIDATION_URL=http://test:test@nexus:8081/service/rest/v1/status/check
+      - LOG_LEVEL=trace
+      - removeXForwardedHeaders=true
